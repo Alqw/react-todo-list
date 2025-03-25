@@ -1,1 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-panel: #2a2a2a;
+  --color-checkbox-background: #dedede;
+  --color-checkbox-background-pressed: #5c5c5c;
+  --color-button-border: #968cd4;
+  --color-button-background: #776ac6;
+  --color-button-background-pressed: #564b9a;
+  --color-borders: #343434;
+  --color-background: #222222;
+
+  --radius-10: 0.625rem;
+  --radius-20: 1.25rem;
+
+  --shadow-primary: 0 4px 8px;
+}
+
+@layer components {
+  .checkbox {
+    @apply min-w-6 h-6 bg-checkbox-background rounded-10 border-borders border cursor-pointer transition duration-150;
+  }
+  .checkbox-pressed {
+    @apply bg-checkbox-background-pressed;
+  }
+  .button {
+    @apply text-xl px-4 py-[5px] bg-button-background rounded-20 border border-button-border active:bg-button-background-pressed cursor-pointer transition duration-150 shadow-black/15 shadow-primary;
+  }
+  .button-pressed {
+  }
+  .todo-item {
+    @apply flex gap-2;
+  }
+  .todo-item-checked {
+    @apply line-through text-checkbox-background-pressed;
+  }
+
+  .page {
+    @apply bg-background w-full h-screen font-poppins text-white flex flex-col items-center gap-8 px-4 pt-24;
+  }
+  .todo-header {
+    @apply flex gap-2 w-full justify-center;
+  }
+  .todo-input {
+    @apply focus:border-white transition duration-150 focus:outline-none shadow-primary shadow-black/15 rounded-20 border border-borders px-4 py-2 max-w-[395px] w-full bg-panel;
+  }
+  .todo-body {
+    @apply flex flex-col items-center max-w-[486px] rounded-20 bg-panel p-4 shadow-primary shadow-black/15 gap-3;
+  }
+}
+
+@utility font-poppins {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
