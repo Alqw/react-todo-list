@@ -27,17 +27,15 @@
   .button {
     @apply text-xl px-4 py-[5px] bg-button-background rounded-20 border border-button-border active:bg-button-background-pressed cursor-pointer transition duration-150 shadow-black/15 shadow-primary;
   }
-  .button-pressed {
-  }
   .todo-item {
     @apply flex gap-2;
   }
   .todo-item-checked {
-    @apply line-through text-checkbox-background-pressed;
+    @apply line-through text-checkbox-background-pressed transition duration-150;
   }
 
   .page {
-    @apply bg-background w-full h-screen font-poppins text-white flex flex-col items-center gap-8 px-4 pt-24;
+    @apply bg-background w-full min-h-screen font-poppins text-white flex flex-col items-center gap-8 px-4 pt-24 pb-24;
   }
   .todo-header {
     @apply flex gap-2 w-full justify-center;
@@ -46,7 +44,10 @@
     @apply focus:border-white transition duration-150 focus:outline-none shadow-primary shadow-black/15 rounded-20 border border-borders px-4 py-2 max-w-[395px] w-full bg-panel;
   }
   .todo-body {
-    @apply flex flex-col items-center max-w-[486px] rounded-20 bg-panel p-4 shadow-primary shadow-black/15 gap-3;
+    @apply break-all flex flex-col max-w-[486px] rounded-20 bg-panel p-4 shadow-primary shadow-black/15 gap-3;
+  }
+  .todo-body-empty {
+    @apply opacity-0 transition duration-150;
   }
 }
 
