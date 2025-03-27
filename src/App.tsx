@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const App = () => {
   const [tasks, setTasks] = useState<
@@ -6,6 +6,26 @@ const App = () => {
   >([]);
   const [task, setTask] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      try {
+        setTasks(JSON.parse(savedTasks));
+      } catch (error) {
+        console.error("Error parsing localStorage: ", error);
+        localStorage.removeItem("tasks");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    } else {
+      localStorage.removeItem("tasks");
+    }
+  }, [tasks]);
 
   const addTask = () => {
     if (task.trim() !== "") {
@@ -57,11 +77,12 @@ const App = () => {
               tasks.length === 0 ? "todo-body-empty" : ""
             }`}
           >
-            {tasks.map((task) => (
+            {tasks.map((task, index) => (
               <div
                 className={`todo-item ${
                   task.deleting ? "todo-item-checked" : ""
                 }`}
+                key={index}
               >
                 <button
                   className={`checkbox ${
